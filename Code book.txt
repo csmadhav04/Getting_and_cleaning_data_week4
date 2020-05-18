@@ -1,0 +1,64 @@
+
+----------------------------------------------------------------------------------------------------
+Brief description of data used:
+
+- 'features.txt': List of all features
+   List of variable names for the data
+
+- 'train/X_train.txt': Training set. 
+  Contains records for training data
+
+- 'test/X_test.txt': Test set.
+Contains records for test data
+
+- 'train/y_train.txt': Training labels.
+Contains activity code labels for training data
+
+- 'test/y_test.txt': Test labels.
+Contains activity code labels for test data
+
+- 'activity_labels.txt': Links the class labels with their activity name.
+  Contains activity labels to activity names mapping
+
+- 'train/subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30
+
+- 'train/subject_test.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30
+
+--------------------------------------------------------------------------------------------------------
+
+Following information is available for each record:
+
+- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
+- Triaxial Angular velocity from the gyroscope. 
+- A 561-feature vector with time and frequency domain variables. 
+- Its activity label. 
+- An identifier of the subject who carried out the experiment.
+
+---------------------------------------------------------------------------------------------------------
+
+Steps involved in data processing:
+
+Step 1. Merges the training and the test sets to create one data set.
+Dataset "data" is created by merging X_train and X_test using rbind()
+Corresponding feature names have been added from "features" data
+Similarly, combined "subject" and "activity" datasets have been created by combining train and test data of subject(subject_train,subject_test) and activity (y_train,t_text) respectively
+
+Step 2. Extract only the measurements on the mean and standard deviation for each measurement.
+Identify the positions of features which correspond to mean and standard deviation of measurements and subset the data to include only those columns which correspond to these features
+
+Step 3. Use descriptive activity names to name the activities in the data set
+Replace the activity labels in the data with corresponding activity names. This mapping is available in the "activity_labels" dataset
+
+Create consolidated dataset
+Combine "subject","activity" and "data" (main data) to create a consolidated dataset using cbind()
+
+Step 4. Appropriately label the data set with descriptive activity names.
+Make changes to the variable names to make them more meaningful and descriptive (using gsub())
+
+Step 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
+This step uses the reshape2 package
+Use the melt and dcast functions to create a new final dataset with the average of each variable for each subject-activity combination
+
+----------------------------------------------------------------------------------------------------------
+END
+----------------------------------------------------------------------------------------------------------
